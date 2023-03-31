@@ -1,6 +1,6 @@
 Name:		texlive-manfnt-font
 Version:	45777
-Release:	1
+Release:	2
 Summary:	Knuth's "manual" fonts
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/manfnt-font
