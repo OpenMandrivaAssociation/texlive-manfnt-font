@@ -1,37 +1,20 @@
-Name:		texlive-manfnt-font
-Version:	45777
-Release:	2
-Summary:	Knuth's "manual" fonts
+%global tl_name manfnt-font
+%global tl_revision 45777
+
+Name:		texlive-%{tl_name}
+Version:	%{tl_revision}
+Release:	1
+Summary:	Knuths manual fonts
 Group:		Publishing
-URL:		https://www.ctan.org/tex-archive/macros/latex/contrib/manfnt-font
+URL:		https://www.ctan.org/tex-archive/fonts/manual
 License:	knuth
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/manfnt-font.r%{version}.tar.xz
+Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/manfnt-font.r%{tl_revision}.tar.xz
 BuildArch:	noarch
-BuildRequires:	texlive-tlpkg
-Requires(pre):	texlive-tlpkg
-Requires(post):	texlive-kpathsea
+BuildSystem:	texlive
+Provides:	texlive(%{tl_name}) = %{tl_revision}
 
 %description
-Metafont (by Donald Knuth) and Adobe Type 1 (by Taco Hoekwater)
-versions of the font containing the odd symbols Knuth uses in
-his books. LaTeX support is available using the manfnt package
+Metafont (by Donald Knuth) and Adobe Type 1 (by Taco Hoekwater) versions
+of the font containing the odd symbols Knuth uses in his books. LaTeX
+support is available using the manfnt package
 
-%prep
-%autosetup -p1 -c
-
-%build
-
-%install
-rm -rf tlpkg
-mkdir -p %{buildroot}%{_texmfdistdir}
-cp -a * %{buildroot}%{_texmfdistdir}
-
-%files
-%{_texmfdistdir}/fonts/type1/hoekwater/manfnt-font
-%{_texmfdistdir}/fonts/map/dvips/manfnt-font
-%{_texmfdistdir}/fonts/afm/hoekwater/manfnt-font
-
-%post -p %{_sbindir}/texlive.post
-
-%postun
-[ "$1" -eq 0 ] && %{_sbindir}/texlive.post
